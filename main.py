@@ -68,6 +68,8 @@ class Game:
                     wee(self, col, row)
                 if tile == 'K':
                     Show(self, col, row)
+
+
     def run(self):
         # 
         self.playing = True
@@ -95,12 +97,17 @@ class Game:
         text_rect = text_surface.get_rect()
         text_rect.topleft = (x*TILESIZE,y*TILESIZE)
         surface.blit(text_surface, text_rect)
+    def draw_dark(self):
+            self.screen.fill(BLACK)
+            
+
     def draw(self):
             self.screen.fill(BGCOLOR)
             self.draw_grid()
             self.all_sprites.draw(self.screen)
             self.draw_text(self.screen, str(self.player.moneybag), 64, WHITE, 1, 1)
-
+            self.screen.fill(BLACK)
+            self.all_sprites.draw(self.screen)
             pg.display.flip()
 
     def events(self):
