@@ -81,12 +81,10 @@ class Player(pg.sprite.Sprite):
             if str(hits[0].__class__.__name__) == "wee":
                 self.speed = 200
                 print()
-            if str(hits[0].__class__.__name__) == "Show":
-                self.color = False
-    def sprite_color(self, group, kill):
-        self.image.fill(LIGHTGREY)
-            
-            
+#            if str(hits[0].__class__.__name__) == "blindnes"
+ 
+    def darkness(self):
+                    
             
     def update(self):
         self.get_keys()
@@ -103,13 +101,8 @@ class Player(pg.sprite.Sprite):
         self.collide_with_group(self.game.die, True)
         self.collide_with_group(self.game.wee, True)
         self.collide_with_group(self.game.Show, True)
-        if self.color == False:
-            self.sprite_color(self.game.coins)
-            self.sprite_color(self.game.noclip)
-            self.sprite_color(self.game.die)
-            self.sprite_color(self.game.wee)
-            self.sprite_color(self.game.Show)
 
+        
 
 
           
@@ -204,7 +197,7 @@ class Show(pg.sprite.Sprite):
         self.rect.x = x * TILESIZE
         self.rect.y = y * TILESIZE
 #    def update(self):
-        #self.rect.x += 1
+        #self.rect.x += 1qQ
 class flashlight(pg.sprite.Sprite):
     def __init__(self, game, x, y):
         self.groups = game.all_sprites, game.flashlight
@@ -228,4 +221,7 @@ class blindness(pg.sprite.Sprite):
         self.y = y
         self.rect.x = x * TILESIZE
         self.rect.y = y * TILESIZE
+#    def update(self):
+        self.rect.x += 1
+        self.color = True
         
