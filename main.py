@@ -37,6 +37,7 @@ class Game:
     # Create run method which runs the whole GAME
     def new(self):
         print("create new game...")
+        self.person = pg.sprite.Group()
         self.all_sprites = pg.sprite.Group()
         self.walls = pg.sprite.Group()
         self.coins = pg.sprite.Group()
@@ -83,6 +84,7 @@ class Game:
          sys.exit()
 
     def update(self):
+        self.person.update()
         self.all_sprites.update()
     
     def draw_grid(self):
@@ -104,10 +106,11 @@ class Game:
     def draw(self):
             self.screen.fill(BGCOLOR)
             self.draw_grid()
+            self.person.draw(self.screen)
             self.all_sprites.draw(self.screen)
             self.draw_text(self.screen, str(self.player.moneybag), 64, WHITE, 1, 1)
-            self.screen.fill(BLACK)
-            self.all_sprites.draw(self.screen)
+            self.screen.fill(BGCOLOR)
+            self.person.draw(self.screen)
             pg.display.flip()
 
     def events(self):
