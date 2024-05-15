@@ -5,7 +5,7 @@ from settings import *
 
 class Player(pg.sprite.Sprite):
     def __init__(self, game, x, y):
-        self.groups = game.all_sprites
+        self.groups = game.person
         # init super class
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
@@ -83,7 +83,8 @@ class Player(pg.sprite.Sprite):
                 print()
 #            if str(hits[0].__class__.__name__) == "blindnes"
  
-    def darkness(self):
+   # def darkness(self):
+  #      self.
                     
             
     def update(self):
@@ -221,6 +222,18 @@ class blindness(pg.sprite.Sprite):
         self.y = y
         self.rect.x = x * TILESIZE
         self.rect.y = y * TILESIZE
+class ChangeColor(pg.sprite.Sprite):
+    def __init__(self, game, x, y):
+        self.groups = game.all_sprites, game.change_color
+        pg.sprite.Sprite.__init__(self, self.groups)
+        self.game = game
+        self.image = pg.Surface((TILESIZE, TILESIZE))
+        self.image.fill(RED)
+        self.rect = self.image.get_rect()
+        self.x = x
+        self.y = y
+        self.rect.x = x * TILESIZE
+        self.rect.y = y * TILESIZE 
 #    def update(self):
         self.rect.x += 1
         self.color = True
