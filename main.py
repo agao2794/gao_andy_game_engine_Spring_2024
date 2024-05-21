@@ -38,6 +38,7 @@ class Game:
     def new(self):
         print("create new game...")
         self.person = pg.sprite.Group()
+        self.blind = pg.sprite.Group()
         self.all_sprites = pg.sprite.Group()
         self.walls = pg.sprite.Group()
         self.coins = pg.sprite.Group()
@@ -69,6 +70,8 @@ class Game:
                     wee(self, col, row)
                 if tile == 'K':
                     Show(self, col, row)
+                if tile == 'B':
+                    blindness(self, col, row)
 
 
     def run(self):
@@ -86,6 +89,7 @@ class Game:
     def update(self):
         self.person.update()
         self.all_sprites.update()
+        self.blind.update()
     
     def draw_grid(self):
          for x in range(0, WIDTH, TILESIZE):
@@ -104,15 +108,30 @@ class Game:
             
 
     def draw(self):
-            self.screen.fill(BGCOLOR)
+#            self.screen.fill(BGCOLOR)
             self.draw_grid()
-            self.person.draw(self.screen)
+#            self.person.draw(self.screen)
             self.all_sprites.draw(self.screen)
             self.draw_text(self.screen, str(self.player.moneybag), 64, WHITE, 1, 1)
-            self.screen.fill(BGCOLOR)
+#            self.screen.fill(BLACK)
             self.person.draw(self.screen)
+            self.blind.draw(self.screen)
             pg.display.flip()
+    def collide_with_group(self, group, kill):
+        hits = pg.sprite.spritecollide(self, group, kill)
+        if hits:
+            if str(hits[0].__class__.__name__) == "blindness":
+                self.all_sprites.draw(self.screen)
+                self.draw_grid()
+                self.draw_text(self.screen, str(self.player.moneybag), 64, WHITE, 1, 1)
+                pg.display.flip
 
+ 
+                #           if pg.sprite.spritecollide
+#            hits = pg.sprite.spritecollide(self, group, kill)
+  #          if hits:
+ #           if str(hits[0].__class__.__name__) == "Coin":
+#                self.moneybag += 1
     def events(self):
          for event in pg.event.get():
             if event.type == pg.QUIT:
