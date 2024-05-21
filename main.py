@@ -45,6 +45,7 @@ class Game:
         self.noclip = pg.sprite.Group()
         self.die = pg.sprite.Group()
         self.wee = pg.sprite.Group()
+        self.ChangeColor = pg.sprite.Group()
         self.Show = pg.sprite.Group()
         self.flashlight = pg.sprite.Group()
         self.blindness = pg.sprite.Group()
@@ -72,7 +73,8 @@ class Game:
                     Show(self, col, row)
                 if tile == 'B':
                     blindness(self, col, row)
-
+                if tile == 'I':
+                    ChangeColor(self, col, row)
 
     def run(self):
         # 
@@ -103,12 +105,10 @@ class Game:
         text_rect = text_surface.get_rect()
         text_rect.topleft = (x*TILESIZE,y*TILESIZE)
         surface.blit(text_surface, text_rect)
-    def draw_dark(self):
-            self.screen.fill(BLACK)
             
 
     def draw(self):
-#            self.screen.fill(BGCOLOR)
+            self.screen.fill(BGCOLOR)
             self.draw_grid()
 #            self.person.draw(self.screen)
             self.all_sprites.draw(self.screen)
@@ -117,14 +117,26 @@ class Game:
             self.person.draw(self.screen)
             self.blind.draw(self.screen)
             pg.display.flip()
-    def collide_with_group(self, group, kill):
-        hits = pg.sprite.spritecollide(self, group, kill)
-        if hits:
-            if str(hits[0].__class__.__name__) == "blindness":
-                self.all_sprites.draw(self.screen)
-                self.draw_grid()
-                self.draw_text(self.screen, str(self.player.moneybag), 64, WHITE, 1, 1)
-                pg.display.flip
+   #         if self.player.collide_with_group(self, group, kill):
+    #            hits = pg.sprite.spritecollide(self,group, kill)
+#            self.player.collide_with_group(self, group, kill)
+#            hits = pg.sprite.spritecollide(self, group, kill)
+#            if hits:
+#                if str(hits[0].__class__.__name__) == "blindness":
+#                    self.all_sprites.draw(self.screen)
+ #                   self.draw_grid()
+
+                    
+
+
+
+#    def collide_with_group(self, group, kill):
+#        hits = pg.sprite.spritecollide(self, group, kill)
+#        if hits:
+#            if str(hits[0].__class__.__name__) == "blindness":
+#                self.all_sprites.draw(self.screen)
+#                self.draw_grid()
+#            self.draw_text(self.screen, str(self.player.moneybag), 64, WHITE, 1, 1)
 
  
                 #           if pg.sprite.spritecollide
