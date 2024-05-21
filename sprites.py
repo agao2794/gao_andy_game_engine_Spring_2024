@@ -10,7 +10,7 @@ class Player(pg.sprite.Sprite):
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
         self.image = pg.Surface((TILESIZE, TILESIZE))
-        self.image.fill(GREEN)
+        self.image.fill(BLACK)
         self.rect = self.image.get_rect()
         self.vx, self.vy = 0, 0
         self.x = x * TILESIZE
@@ -81,6 +81,11 @@ class Player(pg.sprite.Sprite):
             if str(hits[0].__class__.__name__) == "wee":
                 self.speed = 200
                 print()
+            if str(hits[0].__class__.__name__) == "blindness":
+                self.speed = 200
+            if str(hits[0].__class__.__name__) == "ChangeColor":
+                self.image.fill(GREEN)
+                
 #            if str(hits[0].__class__.__name__) == "blindnes"
  
    # def darkness(self):
@@ -102,6 +107,8 @@ class Player(pg.sprite.Sprite):
         self.collide_with_group(self.game.die, True)
         self.collide_with_group(self.game.wee, True)
         self.collide_with_group(self.game.Show, True)
+        self.collide_with_group(self.game.ChangeColor, True)
+        self.collide_with_group(self.game.blindness, True)
 
         
 
@@ -212,11 +219,11 @@ class flashlight(pg.sprite.Sprite):
         self.rect.y = y * TILESIZE
 class blindness(pg.sprite.Sprite):
     def __init__(self, game, x, y):
-        self.groups = game.all_sprites, game.blindness
+        self.groups = game.blind, game.blindness
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
         self.image = pg.Surface((TILESIZE, TILESIZE))
-        self.image.fill(LIGHTGREY)
+        self.image.fill(WHITE)
         self.rect = self.image.get_rect()
         self.x = x
         self.y = y
@@ -224,7 +231,7 @@ class blindness(pg.sprite.Sprite):
         self.rect.y = y * TILESIZE
 class ChangeColor(pg.sprite.Sprite):
     def __init__(self, game, x, y):
-        self.groups = game.all_sprites, game.change_color
+        self.groups = game.all_sprites, game.ChangeColor
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
         self.image = pg.Surface((TILESIZE, TILESIZE))
